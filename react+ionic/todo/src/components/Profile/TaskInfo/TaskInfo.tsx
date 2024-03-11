@@ -1,16 +1,16 @@
 import { IonGrid, IonRow, IonCol, IonText } from "@ionic/react";
+import { useTasks } from "../../../hooks";
 import "./TaskInfo.scss";
 
 export const TaskInfo = () => {
-  const totalTask = 100;
-  const totalTasksCompleted = 37;
+  const { totalTasks, totalTasksCompleted } = useTasks();
 
   return (
     <div className="tasks-info-container">
       <IonGrid>
         <IonRow>
           <IonCol>
-            <IonText color={"dark"}>{totalTask}</IonText>
+            <IonText color={"dark"}>{totalTasks}</IonText>
             <IonText color={"dark"}>Tareas</IonText>
           </IonCol>
           <IonCol>
