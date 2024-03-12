@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, createContext, Children } from "react";
 import { IonModal, IonContent } from "@ionic/react";
 import { TaskContextTypes } from "./TaskContext.type";
+import { TaskForm } from "../../components/Task";
 
 export const TaskContext = createContext<TaskContextTypes.Context>({
   totalTasks: 0,
@@ -36,11 +37,11 @@ export const TaskProvider = (props: TaskContextTypes.Props) => {
       <IonModal
         ref={modalRef}
         trigger="open-modal"
-        initialBreakpoint={0.35}
-        breakpoints={[0, 0.35]}
+        initialBreakpoint={0.25}
+        breakpoints={[0, 0.25]}
       >
         <IonContent className="ion-padding">
-          <h2>Task Form...</h2>
+          <TaskForm onClose={closeFormTask} />
         </IonContent>
       </IonModal>
     </TaskContext.Provider>
