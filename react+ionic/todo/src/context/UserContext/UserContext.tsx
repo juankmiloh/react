@@ -12,12 +12,12 @@ export const UserContext = createContext<UserContextTypes.Context>({
 
 export const UserProvider = (props: UserContextTypes.Props) => {
   const { children } = props;
-  const [username, setUsename] = useState("");
+  const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
 
   useEffect(() => {
     const responseUsername = localStorage.getItem(ENV.LOCAL_STORAGE.USERNAME);
-    setUsename(responseUsername || "Anonimo");
+    setUsername(responseUsername || "Anonimo");
 
     const responseAvatar = localStorage.getItem(ENV.LOCAL_STORAGE.AVATAR);
     setAvatar(responseAvatar || logo);
@@ -25,7 +25,7 @@ export const UserProvider = (props: UserContextTypes.Props) => {
 
   const onChangeUserName = (username: string) => {
     localStorage.setItem(ENV.LOCAL_STORAGE.USERNAME, username);
-    setUsename(username);
+    setUsername(username);
   };
 
   const onChangeAvatar = (avatar: string) => {

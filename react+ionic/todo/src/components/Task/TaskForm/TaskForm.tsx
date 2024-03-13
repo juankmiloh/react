@@ -1,20 +1,28 @@
 import { IonInput, IonButton, IonSpinner } from "@ionic/react";
 import { useFormik } from "formik";
+import { v4 as uuidv4 } from "uuid";
+import { useTasks } from "../../../hooks";
 import { initialValues, validationSchema } from "./TaskForm.form";
 import { TaskFormTypes } from "./TaskForm.types";
 import "./TaskForm.scss";
 
 export const TaskForm = (props: TaskFormTypes.Props) => {
   const { onClose } = props;
+  const { createTask } = useTasks();
 
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
     onSubmit: (formValue) => {
-      console.log(formValue);
-      setTimeout(() => {
-        onClose();
-      }, 3000);
+      const data = {
+        id: uuidv4(),
+        description: formValue.task,
+        completed: false,
+        created_at: new Date(),
+      };
+      console.log(data);
+      createTask(data);
+      onClose();
     },
   });
 
